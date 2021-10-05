@@ -63,7 +63,8 @@ def run():
         tempDir = f"temporal/session_{session_id}/"
         os.makedirs(tempDir)
 
-        if file_details["FileType"] == "application/x-spss-sav":
+        if (file_details["FileType"] == "application/x-spss-sav" or
+          file_details["FileType"] == "application/octet-stream"  ):
 
             # save local
             with open(tempDir + os.path.join(uploadedfile.name), "wb") as f:
@@ -80,7 +81,8 @@ def run():
                 unsafe_allow_html=True,
             )
 
-        if file_details["FileType"] == "application/zip":
+        else if (file_details["FileType"] == "application/zip" or
+            file_details["FileType"] == "application/x-zip-compressed"):
 
             # save local
             with open(tempDir + os.path.join(uploadedfile.name), "wb") as f:
@@ -118,6 +120,8 @@ def run():
                     mime="application/zip",
                 )
 
+        else:
+            st.write("TYPE NOT SUPPORTED")
 
 if __name__ == "__main__":
     run()
