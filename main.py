@@ -81,7 +81,7 @@ def run():
                 unsafe_allow_html=True,
             )
 
-        else if (file_details["FileType"] == "application/zip" or
+        elif (file_details["FileType"] == "application/zip" or
             file_details["FileType"] == "application/x-zip-compressed"):
 
             # save local
